@@ -56,3 +56,15 @@ main .container .button button {
   height: 40px;
   cursor: pointer;
 }
+
+@media (max-width: 480px) {
+  main .container {
+    width: 300px;
+  }
+}
+
+@media (max-width: 365px) {
+  main .container {
+    width: 250px;
+  }
+}
