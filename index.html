@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Quiz App</h1>
+      <div class="container">
+        <h2>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+          obcaecati autem corrupti quidem tempore alias cupiditate soluta ullam,
+          reiciendis veritatis nesciunt unde delectus reprehenderit,
+          perspiciatis natus incidunt, expedita enim architecto.
+        </h2>
+        <div class="alternatives">
+          <ul>
+            <li>
+              <input
+                type="radio"
+                name="answer"
+                id="a"
+                value="${quizApp[index].correct}"
+              />
+              <label for="a" id="a_text"></label>
+            </li>
+
+            <li>
+              <input type="radio" name="answer" id="b" />
+              <label for="b" id="b_text"></label>
+            </li>
+
+            <li>
+              <input type="radio" name="answer" id="c" />
+              <label for="c" id="c_text"></label>
+            </li>
+
+            <li>
+              <input type="radio" name="answer" id="d" />
+              <label for="d" id="d_text"></label>
+            </li>
+          </ul>
+        </div>
+        <div class="button">
+          <button id="btn" onclick="clickBtn()">Next</button>
+        </div>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
