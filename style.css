@@ -62,9 +62,3 @@ main .container .button button {
     width: 300px;
   }
 }
-
-@media (max-width: 365px) {
-  main .container {
-    width: 250px;
-  }
-}
