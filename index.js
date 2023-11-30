@@ -107,7 +107,6 @@ function checkCorrectAlternative(event) {
   removeIncorrectClassFromAll()
   removeCorrectClassFromAll()
 
-
   const selectedLabel = event.currentTarget.closest("li").querySelector("label")
   const selectedValue = selectedLabel ? selectedLabel.innerText : null
 
@@ -118,14 +117,19 @@ function checkCorrectAlternative(event) {
     if (item === event.currentTarget.closest("li")) {
       if (selectedValue === correctAnswer) {
         item.classList.add("correct")
-        console.log("Resposta correta!")
       } else {
         item.classList.add("incorrect")
       }
     }
   })
+
+  const radioButton = document.querySelectorAll('input[type="radio"]')
+  radioButton.forEach((item) => {
+    if (item === event.currentTarget.querySelector('input[type="radio"]'))
+      item.checked = true
+  })
 }
 
-document.querySelectorAll('input[type="radio"]').forEach((radioButton) => {
-  radioButton.addEventListener("click", checkCorrectAlternative)
+document.querySelectorAll(".alternatives ul li").forEach((li) => {
+  li.addEventListener("click", checkCorrectAlternative)
 })

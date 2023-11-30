@@ -40,10 +40,16 @@ main .container h2 {
 
 .alternatives ul li {
   padding: 10px;
+  cursor: pointer;
 }
 
 .alternatives ul li input {
   margin-right: 10px;
+}
+
+.alternatives ul li label {
+  cursor: pointer;
+  width: 100%;
 }
 
 main .container .button {
