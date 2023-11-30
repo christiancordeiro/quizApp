@@ -77,6 +77,7 @@ function loadQuiz() {
 const btn = document.getElementById("btn")
 
 function clickBtn() {
+  removeCorrectClassFromAll()
   index++
 
   if (index < quizApp.length) {
@@ -87,21 +88,32 @@ function clickBtn() {
   }
 }
 
+function removeCorrectClassFromAll() {
+  const li = document.querySelectorAll(".alternatives ul li")
+  li.forEach((item) => {
+    item.classList.remove("correct")
+  })
+}
+
 function checkCorrectAlternative(event) {
   const selectedLabel = event.currentTarget.closest("li").querySelector("label")
   const selectedValue = selectedLabel ? selectedLabel.innerText : null
 
+  const li = document.querySelectorAll(".alternatives ul li")
   const correctAnswer = quizApp[index].correct
 
-  if (selectedValue === correctAnswer) {
-    console.log("Resposta correta!")
-  } else {
-    console.log("Resposta incorreta.")
-  }
+  li.forEach((item) => {
+    if (item === event.currentTarget.closest("li")) {
+      if (selectedValue === correctAnswer) {
+        item.classList.add("correct")
+        console.log("Resposta correta!")
+      } else {
+        console.log("Resposta incorreta.")
+      }
+    }
+  })
 }
 
-const radioClick = document
-  .querySelectorAll('input[type="radio"]')
-  .forEach((radioButton) => {
-    radioButton.addEventListener("click", checkCorrectAlternative)
-  })
+document.querySelectorAll('input[type="radio"]').forEach((radioButton) => {
+  radioButton.addEventListener("click", checkCorrectAlternative)
+})
