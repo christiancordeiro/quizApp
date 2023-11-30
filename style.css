@@ -39,7 +39,7 @@ main .container h2 {
 }
 
 .alternatives ul li {
-  padding: 10px
+  padding: 10px;
 }
 
 .alternatives ul li input {
@@ -61,6 +61,14 @@ main .container .button button {
 
 .correct {
   background-color: green;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  color: #ffff;
+}
+
+.incorrect {
+  background-color: #b22222;
   width: 100%;
   height: 100%;
   border-radius: 4px;

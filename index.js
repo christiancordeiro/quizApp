@@ -77,6 +77,7 @@ function loadQuiz() {
 const btn = document.getElementById("btn")
 
 function clickBtn() {
+  removeIncorrectClassFromAll()
   removeCorrectClassFromAll()
   index++
 
@@ -95,7 +96,18 @@ function removeCorrectClassFromAll() {
   })
 }
 
+function removeIncorrectClassFromAll() {
+  const li = document.querySelectorAll(".alternatives ul li")
+  li.forEach((item) => {
+    item.classList.remove("incorrect")
+  })
+}
+
 function checkCorrectAlternative(event) {
+  removeIncorrectClassFromAll()
+  removeCorrectClassFromAll()
+
+
   const selectedLabel = event.currentTarget.closest("li").querySelector("label")
   const selectedValue = selectedLabel ? selectedLabel.innerText : null
 
@@ -108,7 +120,7 @@ function checkCorrectAlternative(event) {
         item.classList.add("correct")
         console.log("Resposta correta!")
       } else {
-        console.log("Resposta incorreta.")
+        item.classList.add("incorrect")
       }
     }
   })
