@@ -75,19 +75,32 @@ function loadQuiz() {
 }
 
 const btn = document.getElementById("btn")
+btn.addEventListener("click", clickBtn)
 
 function clickBtn() {
-  removeIncorrectClassFromAll()
-  removeCorrectClassFromAll()
-  index++
+  const selectedRadio = document.querySelector('input[type="radio"]:checked')
 
-  if (index < quizApp.length) {
-    loadQuiz()
+  if (selectedRadio) {
+    correctQuestions += selectedRadio.parentElement.classList.contains(
+      "correct"
+    )
+      ? 1
+      : 0
+    removeIncorrectClassFromAll()
+    removeCorrectClassFromAll()
+
+    if (index < quizApp.length - 1) {
+      index++
+      loadQuiz()
+    } else {
+      alert(`Você terminou o Quiz! Pontuação correta: ${correctQuestions}`)
+    }
   } else {
-    // TODO: quantidade de questões acertadas.
-    alert("Você terminou o Quiz!")
+    alert("Por favor, selecione uma opção antes de avançar.")
   }
 }
+
+let correctQuestions = 0
 
 function removeCorrectClassFromAll() {
   const li = document.querySelectorAll(".alternatives ul li")
@@ -104,24 +117,15 @@ function removeIncorrectClassFromAll() {
 }
 
 function checkCorrectAlternative(event) {
-  removeIncorrectClassFromAll()
-  removeCorrectClassFromAll()
-
-  const selectedLabel = event.currentTarget.closest("li").querySelector("label")
+  const selectedLabel = event.currentTarget.querySelector("label")
   const selectedValue = selectedLabel ? selectedLabel.innerText : null
 
-  const li = document.querySelectorAll(".alternatives ul li")
+  const li = event.currentTarget
   const correctAnswer = quizApp[index].correct
 
-  li.forEach((item) => {
-    if (item === event.currentTarget.closest("li")) {
-      if (selectedValue === correctAnswer) {
-        item.classList.add("correct")
-      } else {
-        item.classList.add("incorrect")
-      }
-    }
-  })
+  removeIncorrectClassFromAll()
+  removeCorrectClassFromAll()
+  li.classList.add(selectedValue === correctAnswer ? "correct" : "incorrect")
 
   const radioButton = document.querySelectorAll('input[type="radio"]')
   radioButton.forEach((item) => {
